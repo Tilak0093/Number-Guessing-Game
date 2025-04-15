@@ -1,0 +1,8 @@
+number-guessing-game/
+├── app.py               # Main Flask application
+├── static/
+│   └── styles.css       # CSS stylesheet
+├── templates/
+│   └── index.html       # Main game interface
+├── README.md            # This file
+└── requirements.txt     # Dependencies file
