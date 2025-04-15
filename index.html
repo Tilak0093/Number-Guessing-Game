@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Guessing Game</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="game-container">
+        <h1>Number Guessing Game</h1>
+        <p class="subtitle">I'm thinking of a number between 1 and 100</p>
+        
+        <div class="attempt-info">
+            Attempt {{ attempts }} of {{ max_attempts }}
+        </div>
+        
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        
+        {% if not game_over %}
+        <form class="guess-form" method="POST">
+            <input type="number" class="guess-input" name="guess" min="1" max="100" 
+                   required autofocus placeholder="Your guess">
+            <button type="submit" class="btn">Submit Guess</button>
+        </form>
+        {% else %}
+            <a href="{{ url_for('reset_game') }}">
+                <button class="btn btn-success">Play Again</button>
+            </a>
+        {% endif %}
+        
+        {% if guess_history %}
+        <div class="history-container">
+            <h3 class="history-title">Your Guesses:</h3>
+            <ul class="guess-list">
+                {% for guess in guess_history %}
+                <li class="guess-item">{{ guess }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
