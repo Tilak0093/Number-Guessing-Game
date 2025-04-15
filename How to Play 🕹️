@@ -1,0 +1,9 @@
+The system generates a random number between 1-100
+
+Enter your guess in the input field
+
+Receive feedback if your guess is too high or too low
+
+Guess the number within 10 attempts to win!
+
+Click "Play Again" to restart
